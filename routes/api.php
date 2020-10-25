@@ -31,7 +31,8 @@ Route::get('authors', 'AdminAuthorController@index');
 Route::post('author/add', 'AdminAuthorController@add');
 Route::put('author/{id}', 'AdminAuthorController@edit');
 Route::delete('author/{id}', 'AdminAuthorController@delete');
-Route::get('author/{name}','AdminAuthorController@search');
+Route::get('author/search/{name}','AdminAuthorController@search');
+Route::get('author/{id}','AdminAuthorController@get');
 
 //story
 Route::post('story/add', 'AdminStoryController@add');
