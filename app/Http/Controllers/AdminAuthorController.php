@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 
 class AdminAuthorController extends Controller
 {
-    //
+    //php artisan serve
     public function index()
     {
         try {
@@ -62,6 +62,7 @@ class AdminAuthorController extends Controller
         catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
+            //Ta moi comment cai ni neeeeeeeeeeeeeeeeeee
         }
     }
 }
