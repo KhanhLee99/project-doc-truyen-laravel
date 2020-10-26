@@ -9,7 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminAuthorController extends Controller
 {
-    //
     public function index()
     {
         try {
@@ -70,8 +69,8 @@ class AdminAuthorController extends Controller
     public function get($id)
     {
         try {
-            $author = Author::find($id);
-            return response()->json($author);
+            return Author::find($id);
+            // return response()->json($author);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
