@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Author;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminAuthorController extends Controller
 {
@@ -44,7 +45,8 @@ class AdminAuthorController extends Controller
         }
     }
 
-    public function delete($id){
+    public function delete($id)
+    {
         try {
             $author = Author::findOrFail($id)->delete();
             return response()->json($author); //return true
@@ -54,12 +56,23 @@ class AdminAuthorController extends Controller
         }
     }
 
-    public function search($name){
-        try{
-            $author = Author::where('name','like',"%{$name}%")->get();
+    public function search($name)
+    {
+        try {
+            $author = Author::where('name', 'like', "%{$name}%")->get();
             return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
         }
-        catch (Exception $e) {
+    }
+
+    public function get($id)
+    {
+        try {
+            $author = Author::find($id);
+            return response()->json($author);
+        } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
             //Ta moi comment cai ni neeeeeeeeeeeeeeeeeee
