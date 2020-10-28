@@ -11,7 +11,7 @@ class AdminUserController extends Controller
     //
     public function index()
     {
-        $users = User::all();
+        $users = User::orderBy('id','desc')->get();
         return response()->json($users);
     }
     public function store(Request $request){

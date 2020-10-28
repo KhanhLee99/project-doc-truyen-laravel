@@ -12,7 +12,8 @@ class AdminAuthorController extends Controller
     public function index()
     {
         try {
-            $authors = Author::all();
+            // $authors = Author::all();
+            $authors = Author::orderBy('id','desc')->get();
             return response()->json($authors);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();

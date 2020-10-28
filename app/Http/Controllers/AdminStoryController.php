@@ -22,7 +22,7 @@ class AdminStoryController extends Controller
 
     public function index(){
         try{
-            return response()->json(Story::all());
+            return response()->json(Story::orderBy('id','desc')->get());
         }catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);

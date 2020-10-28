@@ -20,7 +20,7 @@ class AdminCategoryController extends Controller
 
     public function index(){
         try{
-            return response()->json(Category::all());
+            return response()->json(Category::orderBy('id','desc')->get());
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);

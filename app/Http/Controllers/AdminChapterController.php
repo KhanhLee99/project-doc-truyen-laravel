@@ -20,7 +20,7 @@ class AdminChapterController extends Controller
 
     public function index(){
         try{
-            return response()->json(Chapter::all());
+            return response()->json(Chapter::orderBy('id','desc')->get());
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
