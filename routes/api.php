@@ -47,6 +47,7 @@ Route::get('categories', 'AdminCategoryController@index');
 Route::put('category/{id}', 'AdminCategoryController@edit');
 Route::delete('category/{id}', 'AdminCategoryController@delete');
 Route::get('category/search/{name}','AdminCategoryController@search');
+Route::get('category/{id}','AdminCategoryController@get');
 
 //chapter
 Route::post('chapter/add', 'AdminChapterController@add');

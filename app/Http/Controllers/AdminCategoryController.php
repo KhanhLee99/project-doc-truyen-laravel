@@ -53,4 +53,15 @@ class AdminCategoryController extends Controller
             return response()->json($response);
         }
     }
+
+    public function get($id)
+    {
+        try {
+            return Category::find($id);
+            // return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
 }
