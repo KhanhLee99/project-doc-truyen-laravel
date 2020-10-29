@@ -40,6 +40,7 @@ Route::get('stories', 'AdminStoryController@index');
 Route::delete('story/{id}', 'AdminStoryController@delete');
 Route::put('story/{id}', 'AdminStoryController@edit');
 Route::get('story/search/{name}','AdminStoryController@search');
+Route::get('story/{id}','AdminStoryController@get');
 
 //category
 Route::post('category/add', 'AdminCategoryController@add');
