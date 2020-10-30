@@ -42,6 +42,7 @@ Route::delete('story/{id}', 'AdminStoryController@delete');
 Route::put('story/{id}', 'AdminStoryController@edit');
 Route::get('story/search/{name}','AdminStoryController@search');
 Route::get('story/{id}','AdminStoryController@get');
+Route::get('story/chapter/{id}','AdminStoryController@getStoryByChapterId');
 
 //category
 Route::post('category/add', 'AdminCategoryController@add');
@@ -54,7 +55,13 @@ Route::get('category/{id}','AdminCategoryController@get');
 //chapter
 Route::post('chapter/add', 'AdminChapterController@add');
 Route::post('chapter/addImage', 'AdminChapterController@addImage');
-Route::get('chapters', 'AdminChapterController@index');
+Route::get('story/{story_id}/chapters', 'AdminChapterController@index');
 Route::put('chapter/{id}', 'AdminChapterController@edit');
 Route::delete('chapter/{id}', 'AdminChapterController@delete');
-Route::get('chapter', 'AdminChapterController@search');
+// Route::get('chapter', 'AdminChapterController@search');
+Route::get('chapter/{id}', 'AdminChapterController@get');
+
+
+// image
+Route::get('images/chapter/{id}', 'AdminImageController@getImagesByChapterId');
+Route::put('image/chapter/{id}/stt/{stt}', 'AdminImageController@editPath');
