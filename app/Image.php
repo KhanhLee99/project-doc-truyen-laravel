@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Chapter extends Model
+class Image extends Model
 {
     //
     protected $fillable = [
-        'name', 'view', 'path_image', 'story_id', 'pages'
+        'path_image', 'chapter_id', 'stt'
     ];
 }

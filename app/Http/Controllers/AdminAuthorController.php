@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Author;
+use App\Story;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +14,7 @@ class AdminAuthorController extends Controller
     {
         try {
             // $authors = Author::all();
-            $authors = Author::orderBy('id','desc')->get();
+            $authors = Author::orderBy('id', 'desc')->get();
             return response()->json($authors);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
@@ -71,6 +72,17 @@ class AdminAuthorController extends Controller
     {
         try {
             return Author::find($id);
+            // return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
+    public function getAuthorByStoryId($id)
+    {
+        try {
+            return Story::find($id)->Author;
             // return response()->json($author);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();

@@ -33,6 +33,7 @@ Route::put('author/{id}', 'AdminAuthorController@edit');
 Route::delete('author/{id}', 'AdminAuthorController@delete');
 Route::get('author/search/{name}','AdminAuthorController@search');
 Route::get('author/{id}','AdminAuthorController@get');
+Route::get('author/story/{id}','AdminAuthorController@getAuthorByStoryId');
 
 //story
 Route::post('story/add', 'AdminStoryController@add');
@@ -52,6 +53,7 @@ Route::get('category/{id}','AdminCategoryController@get');
 
 //chapter
 Route::post('chapter/add', 'AdminChapterController@add');
+Route::post('chapter/addImage', 'AdminChapterController@addImage');
 Route::get('chapters', 'AdminChapterController@index');
 Route::put('chapter/{id}', 'AdminChapterController@edit');
 Route::delete('chapter/{id}', 'AdminChapterController@delete');
