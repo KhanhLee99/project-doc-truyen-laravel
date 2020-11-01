@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Category;
 use App\Chapter;
 use App\Story;
 use Exception;
@@ -76,6 +77,16 @@ class AdminStoryController extends Controller
     {
         try {
             return Chapter::find($id)->Story;
+            // return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
+    public function getStoriesByCategoryId($id){
+        try {
+            return Category::find($id)->Stories;
             // return response()->json($author);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();

@@ -18,4 +18,9 @@ class Story extends Model
     function Chapters(){
         return $this->hasMany('App\Chapter');
     }
+
+    function Categories(){
+        return $this->belongsToMany('App\Category');
+    }
+
 }

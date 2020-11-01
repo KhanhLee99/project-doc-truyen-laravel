@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Story;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -58,6 +59,16 @@ class AdminCategoryController extends Controller
     {
         try {
             return Category::find($id);
+            // return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
+    public function getCategoriesByStoryId($id){
+        try {
+            return Story::find($id)->Categories;
             // return response()->json($author);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
