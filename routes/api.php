@@ -26,6 +26,7 @@ Route::delete('user/{id}','AdminUserController@delete');
 Route::get('user/search/{name}','AdminUserController@search');
 Route::post('login','AdminUserController@login');
 
+
 //author
 Route::get('authors', 'AdminAuthorController@index');
 Route::post('author/add', 'AdminAuthorController@add');
