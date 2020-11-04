@@ -57,6 +57,17 @@ class AdminUserController extends Controller
         }
     }
 
+    public function get($id)
+    {
+        try {
+            return User::find($id);
+            // return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
     public function login(Request $request)
     {
         try {
