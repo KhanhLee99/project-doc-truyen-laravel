@@ -72,4 +72,6 @@ Route::put('image/chapter/{id}/stt/{stt}', 'AdminImageController@editPath');
 
 //story_category
 Route::post('storyCategory/add', 'AdminStoryCategoryController@add');
+Route::delete('storyCategory/deleteCategories/{id}', 'AdminStoryCategoryController@deleteStoryCategories');
+Route::delete('storyCategory/delete/story/{story_id}/category/{category_id}', 'AdminStoryCategoryController@deleteStoryCategory');
 // Route::get('storyCategory/categoriesId/story/{id}', 'AdminStoryCategoryController@getCategoriesIdByStoryId');
