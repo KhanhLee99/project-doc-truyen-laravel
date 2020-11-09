@@ -75,7 +75,7 @@ class AdminAuthorController extends Controller
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
-            //Ta moi comment cai ni neeeeeeeeeeeeeeeeeee
+            
         }
     }
 }
