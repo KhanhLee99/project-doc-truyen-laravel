@@ -68,6 +68,7 @@ Route::get('chapter/{id}', 'AdminChapterController@get');
 
 // image
 Route::get('images/chapter/{id}', 'AdminImageController@getImagesByChapterId');
+Route::delete('images/chapter/{id}', 'AdminImageController@deleteImagesByChapterId');
 Route::put('image/chapter/{id}/stt/{stt}', 'AdminImageController@editPath');
 
 //story_category
@@ -75,3 +76,6 @@ Route::post('storyCategory/add', 'AdminStoryCategoryController@add');
 Route::delete('storyCategory/deleteCategories/{id}', 'AdminStoryCategoryController@deleteStoryCategories');
 Route::delete('storyCategory/delete/story/{story_id}/category/{category_id}', 'AdminStoryCategoryController@deleteStoryCategory');
 // Route::get('storyCategory/categoriesId/story/{id}', 'AdminStoryCategoryController@getCategoriesIdByStoryId');
+
+//chapter-user
+Route::get('story/many-view/{number}', 'StoryController@getStoriesManyView');
