@@ -77,5 +77,14 @@ Route::delete('storyCategory/deleteCategories/{id}', 'AdminStoryCategoryControll
 Route::delete('storyCategory/delete/story/{story_id}/category/{category_id}', 'AdminStoryCategoryController@deleteStoryCategory');
 // Route::get('storyCategory/categoriesId/story/{id}', 'AdminStoryCategoryController@getCategoriesIdByStoryId');
 
-//chapter-user
+//story-user
 Route::get('story/many-view/{number}', 'StoryController@getStoriesManyView');
+
+
+//login-user
+Route::post('login-user','UserController@login');
+Route::post('follow','UserController@follow');
+Route::delete('unfollow/story/{story_id}/user/{user_id}', 'UserController@unFollow');
+
+
+
