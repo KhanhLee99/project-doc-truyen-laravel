@@ -20,6 +20,17 @@ class AdminImageController extends Controller
             return response()->json($response);
         }
     }
+    function deleteImagesByChapterId($id) {
+        try {
+            return Image::where('chapter_id', $id)->delete();
+            // $images = Chapter::find($id)->Images;
+            // return $images->delete();
+            // return response()->json($author);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
 
     function editPath(Request $request, $id, $stt){
         try {
