@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Chapter;
+use App\Image;
 use Exception;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,9 @@ class AdminChapterController extends Controller
         }
     }
 
-    public function index(){
+    public function index($story_id){
         try{
-            return response()->json(Chapter::all());
+            return response()->json(Chapter::where('story_id', $story_id)->orderBy('id','desc')->get());
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
@@ -49,6 +50,26 @@ class AdminChapterController extends Controller
         try{
             $name = $request->input('name');
             return response()->json(Chapter::where('name', 'like', "%{$name}%")->get());
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
+    public function addImage(Request $request){
+        try{
+            return response()->json(Image::create($request->all()));
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
+    public function get($id)
+    {
+        try {
+            return Chapter::find($id);
+            // return response()->json($author);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
