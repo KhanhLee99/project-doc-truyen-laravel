@@ -79,6 +79,8 @@ Route::delete('storyCategory/delete/story/{story_id}/category/{category_id}', 'A
 
 //story-user
 Route::get('story/many-view/{number}', 'StoryController@getStoriesManyView');
+Route::get('story/follow/{user_id}', 'StoryController@getStoriesFollow');
+
 
 
 //login-user

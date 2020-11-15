@@ -23,4 +23,8 @@ class Story extends Model
         return $this->belongsToMany('App\Category');
     }
 
+    function Users(){
+        return $this->belongsToMany('App\User');
+    }
+
 }
