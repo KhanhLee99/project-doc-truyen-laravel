@@ -29,7 +29,19 @@ class UserController extends Controller
     public function unFollow($user_id, $story_id)
     {
         try {
-            return Story_User::where([['user_id', $user_id],['story_id', $story_id]])->delete();
+            return Story_User::where([['user_id', $user_id], ['story_id', $story_id]])->delete();
+            // return response()->json($story_category);
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
+    public function checkFollow($user_id, $story_id)
+    {
+        try {
+            $count = Story_User::where([['user_id', $user_id], ['story_id', $story_id]])->count();
+            return $count;
             // return response()->json($story_category);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
@@ -59,7 +71,7 @@ class UserController extends Controller
                 if (!is_null($password_status)) {
                     $user           =       $password_status;
                     // if ($user->role != 'user') {
-                        return response()->json(["status" => $this->status_code, "success" => true, "message" => "You have logged in successfully", "data" => $user]);
+                    return response()->json(["status" => $this->status_code, "success" => true, "message" => "You have logged in successfully", "data" => $user]);
                     // }
                     // else{
                     //     return response()->json(["status" => "failed", "success" => false, "message" => "Unable to login. You not Admin !!!."]);

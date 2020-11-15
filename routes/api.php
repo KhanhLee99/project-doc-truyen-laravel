@@ -87,6 +87,7 @@ Route::get('story/follow/{user_id}', 'StoryController@getStoriesFollow');
 Route::post('login-user','UserController@login');
 Route::post('follow','UserController@follow');
 Route::delete('unfollow/user/{user_id}/story/{story_id}', 'UserController@unFollow');
+Route::get('check-follow/user/{user_id}/story/{story_id}', 'UserController@checkFollow');
 
 
 
