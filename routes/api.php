@@ -79,12 +79,14 @@ Route::delete('storyCategory/delete/story/{story_id}/category/{category_id}', 'A
 
 //story-user
 Route::get('story/many-view/{number}', 'StoryController@getStoriesManyView');
+Route::get('story/follow/{user_id}', 'StoryController@getStoriesFollow');
+
 
 
 //login-user
 Route::post('login-user','UserController@login');
 Route::post('follow','UserController@follow');
-Route::delete('unfollow/story/{story_id}/user/{user_id}', 'UserController@unFollow');
+Route::delete('unfollow/user/{user_id}/story/{story_id}', 'UserController@unFollow');
 
 
 

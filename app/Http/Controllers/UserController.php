@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User;
-use App\Follow;
+use App\Story_User;
 
 use Exception;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class UserController extends Controller
     {
         try {
             $data = $request->all();
-            $follow = Follow::create($data);
+            $follow = Story_User::create($data);
             return response()->json($follow);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
@@ -29,7 +29,7 @@ class UserController extends Controller
     public function unFollow($user_id, $story_id)
     {
         try {
-            return Follow::where([['user_id', $user_id],['story_id', $story_id]])->delete();
+            return Story_User::where([['user_id', $user_id],['story_id', $story_id]])->delete();
             // return response()->json($story_category);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
