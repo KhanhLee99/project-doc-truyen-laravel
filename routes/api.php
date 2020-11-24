@@ -60,7 +60,7 @@ Route::get('categories/story/{id}','AdminCategoryController@getCategoriesByStory
 Route::post('chapter/add', 'AdminChapterController@add');
 Route::post('chapter/addImage', 'AdminChapterController@addImage');
 Route::get('story/{story_id}/chapters', 'AdminChapterController@index');
-Route::put('chapter/{id}', 'AdminChapterController@edit');
+Route::put('chapter/{id}', 'AdminChapterController@edit');          
 Route::delete('chapter/{id}', 'AdminChapterController@delete');
 // Route::get('chapter', 'AdminChapterController@search');
 Route::get('chapter/{id}', 'AdminChapterController@get');
