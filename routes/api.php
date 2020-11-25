@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 //user
 Route::get('users', 'AdminUserController@index');
-Route::post('user/register','AdminUserController@store');
+Route::post('admin/register','AdminUserController@store');
 Route::put('user/{id}','AdminUserController@edit');
 Route::delete('user/{id}','AdminUserController@delete');
 Route::get('user/search/{name}','AdminUserController@search');
@@ -60,7 +60,7 @@ Route::get('categories/story/{id}','AdminCategoryController@getCategoriesByStory
 Route::post('chapter/add', 'AdminChapterController@add');
 Route::post('chapter/addImage', 'AdminChapterController@addImage');
 Route::get('story/{story_id}/chapters', 'AdminChapterController@index');
-Route::put('chapter/{id}', 'AdminChapterController@edit');          
+Route::put('chapter/{id}', 'AdminChapterController@edit');
 Route::delete('chapter/{id}', 'AdminChapterController@delete');
 // Route::get('chapter', 'AdminChapterController@search');
 Route::get('chapter/{id}', 'AdminChapterController@get');
@@ -89,5 +89,7 @@ Route::post('follow','UserController@follow');
 Route::delete('unfollow/user/{user_id}/story/{story_id}', 'UserController@unFollow');
 Route::get('check-follow/user/{user_id}/story/{story_id}', 'UserController@checkFollow');
 
+//register-user
+Route::post('user/register','UserController@userSignUp');
 
 
