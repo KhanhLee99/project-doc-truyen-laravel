@@ -92,4 +92,10 @@ Route::get('check-follow/user/{user_id}/story/{story_id}', 'UserController@check
 //register-user
 Route::post('user/register','UserController@userSignUp');
 
+//chapter-user
+Route::get('chapter/year/{year}/month/{month}/limit/{number}', 'ChapterController@getChaptersInMonth');
+Route::get('chapters/today/limit/{number}', 'ChapterController@getChaptersToday');
+Route::get('chapters/week/limit/{number}', 'ChapterController@getChaptersInWeek');
+Route::get('chapters/day/{day}', 'ChapterController@getChaptersByDay');
+
 
