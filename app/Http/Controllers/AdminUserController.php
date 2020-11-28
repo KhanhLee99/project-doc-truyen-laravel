@@ -67,6 +67,59 @@ class AdminUserController extends Controller
             return response()->json($response);
         }
     }
+    public function changePass(Request $request, $email)
+    {
+        try {
+            $validator = Validator::make(
+                $request->all(),
+                [
+                    "password_current" => "required",
+                    "password" => "required",
+                    "password_confirm" => "required|same:password"
+                ],
+                [
+                    'required' => ':attribute không được để trống',
+                    'same' => 'Xác nhận mật khẩu không đúng'
+                ],
+                [
+                    'password_current' => 'Mật khẩu hiện tại',
+                    'password' => 'Mật khẩu',
+                    'password_confirm' => 'Xác nhận mật khẩu',
+                ]
+            );
+
+            if ($validator->fails()) {
+                return response()->json(["status" => "failed", "message" => "validation_error", "errors" => $validator->errors()]);
+            }
+            $email_status       =       User::where("email", $email)->first();
+
+            if (!is_null($email_status)) {
+
+                if (md5($request->password_current) == $email_status->password) {
+                    $userDataArray    =    array(
+                        "email"      =>    $email,
+                        "password"   =>    md5($request->password),
+                    );
+                    $user             =    User::where('email', '=', $email)->update($userDataArray);
+
+                    if (!is_null($user)) {
+                        return response()->json(["status" => $this->status_code, "success" => true, "message" => "Đổi mật khẩu thành công", "data" => $user]);
+                    } else {
+                        return response()->json(["status" => "failed", "success" => false, "message" => "Đổi mật khẩu không thành công"]);
+                    }
+                } else {
+                    return response()->json(["status" => "failed", "success" => false, "message" => "Mật khẩu hiện tại không đúng"]);
+                }
+            }
+            else{
+                return response()->json(["status" => "failed", "success" => false, "message" => "Email doesn't exist."]);
+            }
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
+
 
     public function login(Request $request)
     {
@@ -91,8 +144,7 @@ class AdminUserController extends Controller
                     $user           =       $password_status;
                     if ($user->role != 'user') {
                         return response()->json(["status" => $this->status_code, "success" => true, "message" => "You have logged in successfully", "data" => $user]);
-                    }
-                    else{
+                    } else {
                         return response()->json(["status" => "failed", "success" => false, "message" => "Unable to login. You not Admin !!!."]);
                     }
                 } else {

@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\DB;
 
 class ChapterController extends Controller
 {
-    protected $dates = ['created_at'];
     public function getChaptersInMonth($year, $month, $number)
     {
         try {
@@ -57,29 +56,27 @@ class ChapterController extends Controller
         }
     }
 
-    // public function getChaptersByDay($day)
-    // {
-    //     try {
-    //         // $chapters = Chapter::all();
-    //         $chapters = DB::table('stories')
-    //         ->join('chapters', 'stories.id', '=', 'chapters.story_id')
-    //         // ->select('chapters.*','stories.name as name_story' )
-    //         ->get();
+    public function getChaptersByDay($day)
+    {
+        try {
+            $chapters = DB::table('stories')
+            ->join('chapters', 'stories.id', '=', 'chapters.story_id')
+            ->select('chapters.*','stories.name as name_story' )
+            ->get();
 
-    //         $chaptersDay = array();
-    //         foreach($chapters as $chapter){
-    //             if($chapter->created_at->format('d') == $day){
-    //                 array_push($chaptersDay, $chapter);
-    //             }
-    //         }
-
-    //         return $chapters;
-    //         // return $chaptersDay;
-    //     } catch (Exception $e) {
-    //         $response['error'] = $e->getMessage();
-    //         return response()->json($response);
-    //     }
-    // }
+            $chaptersDay = array();
+            foreach($chapters as $chapter){
+                $c = new Carbon($chapter->created_at);
+                if($c->dayOfWeek == $day){
+                    array_push($chaptersDay, $chapter);
+                }
+            }
+            return $chaptersDay;
+        } catch (Exception $e) {
+            $response['error'] = $e->getMessage();
+            return response()->json($response);
+        }
+    }
 
     // public function getChaptersUpdate($number){
     //     try {

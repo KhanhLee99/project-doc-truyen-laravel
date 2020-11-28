@@ -25,6 +25,7 @@ Route::put('user/{id}','AdminUserController@edit');
 Route::delete('user/{id}','AdminUserController@delete');
 Route::get('user/search/{name}','AdminUserController@search');
 Route::post('login','AdminUserController@login');
+Route::post('change-password/{email}','AdminUserController@changePass');
 Route::get('user/{id}','AdminUserController@get');
 
 
@@ -91,6 +92,7 @@ Route::get('check-follow/user/{user_id}/story/{story_id}', 'UserController@check
 
 //register-user
 Route::post('user/register','UserController@userSignUp');
+
 
 //chapter-user
 Route::get('chapter/year/{year}/month/{month}/limit/{number}', 'ChapterController@getChaptersInMonth');
