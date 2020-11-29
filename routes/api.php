@@ -28,6 +28,9 @@ Route::post('login','AdminUserController@login');
 Route::post('change-password/{email}','AdminUserController@changePass');
 Route::get('user/{id}','AdminUserController@get');
 
+//register-admin adminSignUp
+Route::post('admin/register','AdminUserController@adminSignUp');
+
 
 //author
 Route::get('authors', 'AdminAuthorController@index');
@@ -101,3 +104,6 @@ Route::get('chapters/week/limit/{number}', 'ChapterController@getChaptersInWeek'
 Route::get('chapters/day/{day}', 'ChapterController@getChaptersByDay');
 
 
+//comment
+Route::post('comment/add','CommentController@addComment');
+Route::get('comment/get/{id}','CommentController@getCommentsByChapterId');

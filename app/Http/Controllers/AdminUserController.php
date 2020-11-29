@@ -61,7 +61,6 @@ class AdminUserController extends Controller
     {
         try {
             return User::find($id);
-            // return response()->json($author);
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
@@ -156,6 +155,55 @@ class AdminUserController extends Controller
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
             return response()->json($response);
+        }
+    }
+
+    public function adminSignUp(Request $request)
+    {
+        $validator              =        Validator::make(
+            $request->all(),
+            [
+                "name"              =>          "required",
+                "email"             =>          "required|email",
+                "password"          =>          "required",
+                "password_confirm"  =>          "required|same:password",
+            ],
+            [
+                'required' => ':attribute không được để trống',
+                'email' => 'Bạn phải nhập đúng định dạng của email',
+                'same' => 'Xác nhận mật khẩu không đúng'
+            ],
+            [
+                'name' => 'Tên',
+                'email' => 'Email',
+                'password' => 'Mật khẩu',
+                'password_confirm' => 'Xác nhận mật khẩu',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return response()->json(["status" => "failed", "message" => "validation_error", "errors" => $validator->errors()]);
+        }
+
+        $userDataArray          =       array(
+            "name"              =>          $request->name,
+            "email"              =>          $request->email,
+            "role"              =>           "admin",
+            "password"           =>          md5($request->password),
+        );
+
+        $user_status            =           User::where("email", $request->email)->first();
+
+        if (!is_null($user_status)) {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Email đã được sử dụng"]);
+        }
+
+        $user                   =           User::create($userDataArray);
+
+        if (!is_null($user)) {
+            return response()->json(["status" => $this->status_code, "success" => true, "message" => "Đăng ký thành công", "data" => $user]);
+        } else {
+            return response()->json(["status" => "failed", "success" => false, "message" => "Đăng ký không thành công"]);
         }
     }
 }

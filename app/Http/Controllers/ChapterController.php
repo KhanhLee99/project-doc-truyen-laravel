@@ -92,4 +92,5 @@ class ChapterController extends Controller
     //         return response()->json($response);
     //     }
     // }
+
 }
