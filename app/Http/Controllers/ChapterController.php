@@ -61,7 +61,7 @@ class ChapterController extends Controller
         try {
             $chapters = DB::table('stories')
             ->join('chapters', 'stories.id', '=', 'chapters.story_id')
-            ->select('chapters.*','stories.name as name_story' )
+            ->select('chapters.*','stories.name as name_story','stories.path_image' )
             ->get();
 
             $chaptersDay = array();
