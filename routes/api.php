@@ -107,3 +107,9 @@ Route::get('chapters/day/{day}', 'ChapterController@getChaptersByDay');
 //comment
 Route::post('comment/add','CommentController@addComment');
 Route::get('comment/get/{id}','CommentController@getCommentsByChapterId');
+
+
+//feedback
+Route::get('feedbacks','FeedbackController@index');
+Route::post('feedback/add','FeedbackController@add');
+Route::delete('feedback/{id}','FeedbackController@delete');

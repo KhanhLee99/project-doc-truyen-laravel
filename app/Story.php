@@ -14,7 +14,7 @@ class Story extends Model
     ];
 
     protected $fillable = [
-        'name', 'description', 'path_image', 'status', 'user_id', 'author_id',
+        'name', 'description', 'path_image', 'status', 'user_id', 'author_id', 'view', 'follow'
     ];
 
     function Author(){
