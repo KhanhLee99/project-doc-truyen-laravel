@@ -57,6 +57,14 @@ class UserController extends Controller
                 [
                     "email"             =>          "required|email",
                     "password"          =>          "required"
+                ],
+                [
+                    'required' => ':attribute không được để trống',
+                    'email' => 'Bạn phải nhập đúng định dạng của email',
+                ],
+                [
+                    'email' => 'Email',
+                    'password' => 'Mật khẩu',
                 ]
             );
 
