@@ -17,7 +17,7 @@ class ChapterController extends Controller
             return DB::table('stories')
             ->join('chapters', 'stories.id', '=', 'chapters.story_id')
             -> orderBy('chapters.view', 'DESC')->whereYear('chapters.created_at', '=', $year)->whereMonth('chapters.created_at', '=', $month)->limit($number)
-            ->select('chapters.id','chapters.name','chapters.view','chapters.story_id','chapters.created_at','stories.name as name_story','stories.path_image' )
+            ->select('chapters.id','chapters.name','chapters.view','chapters.story_id','chapters.created_at','stories.name as name_story','stories.status','stories.follow','stories.path_image' )
             ->get();
 
         } catch (Exception $e) {
@@ -33,7 +33,7 @@ class ChapterController extends Controller
             return DB::table('stories')
             ->join('chapters', 'stories.id', '=', 'chapters.story_id')
             ->whereDate('chapters.created_at', Carbon::today())->orderBy('chapters.view', 'DESC')->limit($number)
-            ->select('chapters.id','chapters.name','chapters.view','chapters.story_id','chapters.created_at','stories.name as name_story','stories.path_image')
+            ->select('chapters.id','chapters.name','chapters.view','chapters.story_id','chapters.created_at','stories.name as name_story','stories.status','stories.follow','stories.path_image')
             ->get();
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
@@ -48,7 +48,7 @@ class ChapterController extends Controller
             return DB::table('stories')
             ->join('chapters', 'stories.id', '=', 'chapters.story_id')
             ->whereBetween('chapters.created_at', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->orderBy('chapters.view', 'DESC')->limit($number)
-            ->select('chapters.id','chapters.name','chapters.view','chapters.story_id','chapters.created_at','stories.name as name_story','stories.path_image' )
+            ->select('chapters.id','chapters.name','chapters.view','chapters.story_id','chapters.created_at','stories.name as name_story','stories.status','stories.follow','stories.path_image' )
             ->get();
         } catch (Exception $e) {
             $response['error'] = $e->getMessage();
@@ -61,7 +61,7 @@ class ChapterController extends Controller
         try {
             $chapters = DB::table('stories')
             ->join('chapters', 'stories.id', '=', 'chapters.story_id')
-            ->select('chapters.*','stories.name as name_story','stories.path_image', 'stories.follow', 'stories.status', 'stories.description')
+            ->select('chapters.*','stories.name as name_story','stories.path_image', 'stories.follow', 'stories.status', 'stories.description', 'stories.view as story_view')
             ->get();
 
             $chaptersDay = array();
